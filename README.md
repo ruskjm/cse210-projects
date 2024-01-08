@@ -1,6 +1,5 @@
 # cse210-ww-student-template+
 Jason Rusk
-
 CSE 210 Programming with Classes
 
 This is the starter code for Jason Rusk in the worldwide content version of CSE 210.
