@@ -1,5 +1,8 @@
-# cse210-ww-student-template
-This is the starter code for students in the worldwide content version of CSE 210.
+# cse210-ww-student-template+
+Jason Rusk
+CSE 210 Programming with Classes
+
+This is the starter code for Jason Rusk in the worldwide content version of CSE 210.
 
 This repository contains the starter code for many different projects. They are arranged as follows:
 
