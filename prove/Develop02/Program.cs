@@ -33,34 +33,38 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Create a new JournalOptions object
-        JournalOptions options = new JournalOptions();
+      //Create a new JournalOptions object
+      JournalOptions options = new JournalOptions();
 
-        //Create int for menu options
-        int option = -1;
+      //Create a new JournalMenu object
+      JournalMenu menu = new JournalMenu();
 
-        //Display welcome greeting
-        Console.WriteLine("Welcome to your journal!");
+      //Create int for menu options
+      int option = -1;
 
-        //Continue until the using enters 5
-        while (option != 5) {
+      //Display welcome greeting
+      Console.WriteLine("Welcome to your journal!");
 
-            //Create a new JournalMenu object
-            JournalMenu menu = new JournalMenu();
+      //Enter a blank line
+      Console.WriteLine();
 
-            //Display the menu from the JournalMenu class
-            menu.ShowMenu();
+      //Continue until the using enters 5
+      while (option != 5) {
 
-            //Get menu options entered from JournalMenu class
-            option = menu.GetMenuSelection();
+         //Display the menu from the JournalMenu class
+         menu.ShowMenu();
 
-            //Enter a blank line
-             Console.WriteLine();
+         //Get menu options entered from JournalMenu class
+         option = menu.GetMenuSelection();
+
+         //Enter a blank line
+         Console.WriteLine();
           
-            //Get journal options from JournalOptions class
-            options.ProcessOptions(option);
+         //Get journal options from JournalOptions class
+         options.ProcessOptions(option);
          }
-        //Display message after entering the journal 
-        Console.WriteLine("You have exited your journal!");
+
+      //Display message after entering the journal 
+      Console.WriteLine("You have exited your journal!");
     } 
 }

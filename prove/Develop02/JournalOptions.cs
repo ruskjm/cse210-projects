@@ -32,8 +32,6 @@ public class JournalOptions
         {
             // Display entries
             journal.DisplayAll();
-            //Enter a blank line
-            Console.WriteLine();
         }
         //If option 3 load journal from file
         else if (option == 3)
