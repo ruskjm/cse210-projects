@@ -39,6 +39,4 @@ public class RandomPrompt {
         //Return prompt text at the selected index
         return prompts[index]; 
    }
-
-
 }

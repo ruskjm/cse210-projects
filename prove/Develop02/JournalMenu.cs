@@ -7,7 +7,6 @@ public class JournalMenu
     public void ShowMenu()
     {
         //Menu options
-        Console.WriteLine("Welcome to your journal!");
         Console.WriteLine(); 
         Console.WriteLine("Select one of the following options:");
         Console.WriteLine("1. Write a journal entry"); 

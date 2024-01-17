@@ -1,17 +1,46 @@
+/*
+Developer: Jason Rusk
+CSE 210: Programming with Classes
+Week 02 Develop: Journal Program
+
+Journal program contains the following features:
+1. Provide random prompts for the user to give journals ideas/topics.
+2. Write a new entry - Show the user a random prompt, and save their response, the prompt, and 
+   the date as an Entry.
+3. Display the journal - Iterate through all entries in the journal and display them to the screen.
+4. Save the journal to a file - Prompt the user for a filename and then save the current journal 
+   (the complete list of entries) to that file location.
+5. Load the journal from a file - Prompt the user for a filename and then load the journal 
+   (a complete list of entries) from that file. This should replace any entries currently stored 
+   the journal.
+6. Provide a menu that allows the user choose these options.
+
+Classes:
+JournalMenu: Displays the list of menu options for the user to pick from.
+JournalOptions: Run the options selected by the user.
+RandomPrompt: Returns a random prompt from a list.
+Entry: Used for single journal entry to display the prompt, date and journal entry.
+Journal: Adds each journal entry to from the Entry class.
+         Displays all journal entries from the list.
+         Loads all the journal entries from a file.
+         Saves all the journal entries to a file.
+*/
+
 using System;
 
+//The Program class serves as the entry point for the application.
 class Program
 {
     static void Main(string[] args)
     {
-        //Create a new RandomPrompt object
-        RandomPrompt random = new RandomPrompt();
+        //Create a new JournalOptions object
+        JournalOptions options = new JournalOptions();
 
-        //Create a new Journal object
-        Journal journal = new Journal();
-
-        //Create string for menu options
+        //Create int for menu options
         int option = -1;
+
+        //Display welcome greeting
+        Console.WriteLine("Welcome to your journal!");
 
         //Continue until the using enters 5
         while (option != 5) {
@@ -22,53 +51,16 @@ class Program
             //Display the menu from the JournalMenu class
             menu.ShowMenu();
 
-            //Get menu option entered from JournalMenu class
+            //Get menu options entered from JournalMenu class
             option = menu.GetMenuSelection();
 
             //Enter a blank line
              Console.WriteLine();
-
-            //If option 1 add entry to journal
-            if (option == 1) {
-                //Create a new Entry object
-                Entry entry = new Entry();
-                //Get a random prompt text from the RandomPrompt object
-                //and assign it to the promptText property of the entry object
-                Console.WriteLine(entry._promptText = random.GetRandomPrompt());
-                //Get current date and assign it to the _date property of the entry object
-                entry._date = DateTime.Now.ToShortDateString();
-                Console.Write(">");
-                //Read in the jounral entry from the user
-                entry._entryText = Console.ReadLine();
-                //Add the journal entry object to the Journal
-                journal.AddEntry(entry);
-                //Enter a blank line
-                Console.WriteLine();
-            //If option 2 display all to journal entries
-            } else if (option == 2) {
-                //Call the DisplayAll() method on the Journal object
-                //and display all journal entries
-                journal.DisplayAll();
-                //Enter a blank line
-                Console.WriteLine();
-            //If option 3 load journal from file
-            } else if (option == 3) {
-                Console.Write("Enter file name to load. ");
-                //Read in the file name from the user
-                string file = Console.ReadLine();
-                //Load journal entries from a file
-                journal.LoadfromFile(file);
-                Console.WriteLine("File loaded");
-            //If option 4 save journal to file
-            }else if (option == 4) {
-                Console.Write("Enter file name to save. ");
-                //Read in the file name from the user
-                string file = Console.ReadLine();
-                //Save journal entries to a file
-                journal.SaveToFile(file);
-                Console.WriteLine("File saved");
-            } 
-        }
+          
+            //Get journal options from JournalOptions class
+            options.ProcessOptions(option);
+         }
+        //Display message after entering the journal 
         Console.WriteLine("You have exited your journal!");
-    }
+    } 
 }

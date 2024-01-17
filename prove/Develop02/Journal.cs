@@ -20,6 +20,10 @@ public class Journal {
 
     //DisplayAll() displays all journal entries
     public void DisplayAll() {
+        //Display message if there are not journal entries to display
+        if(_entries.Count == 0) {
+            Console.WriteLine("No journal entries to display.");
+        }
         //Iterate through all entries
          foreach (Entry entry in _entries)
         {
