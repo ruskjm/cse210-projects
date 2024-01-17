@@ -6,7 +6,7 @@ public class RandomPrompt {
    public List<string> prompts;
 
     public RandomPrompt() {
-        //Prompts that can be returned
+        //Prompts that can be returned stored in an array of strings
         prompts = new List<string>
         {
             "Who was the most interesting person I interacted with today?",
