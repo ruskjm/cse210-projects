@@ -34,8 +34,12 @@ public class Reference {
         return _endVerse; 
     }
 
-    public string DisplayScripture() {
-        return $"{_book} {_chapter}:{_verse}";
+    public string DisplayReference() {
+        if(_endVerse > 0) {
+            return $"{_book} {_chapter}:{_verse}-{_endVerse}";
+        } else {
+            return $"{_book} {_chapter}:{_verse}";
+        }
     }
 
 }

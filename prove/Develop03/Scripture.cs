@@ -20,7 +20,7 @@ public class Scripture {
 
     public String GetDisplayWords() {  
 
-        string displayWords = _reference.DisplayScripture();
+        string displayWords = _reference.DisplayReference();
 
         foreach(Word word in _words) {
             displayWords += " " + word.DisplayWord();
@@ -35,20 +35,28 @@ public class Scripture {
         List<int> indexes = new List<int>();
 
         while(indexes.Count < numberToHide) {
+
             int index = rand.Next(0, _words.Count);
-            if(!indexes.Contains(index)) {
-                indexes.Add(index);  
+              
+            // Check if word is already hidden
+            if(!_words[index].IsHidden()) {    
+                indexes.Add(index);
             }
         }
-        
+
         foreach(int index in indexes) {
             _words[index].Hide();
         }
     }
 
-
     public bool IsCompletelyHidden() {
-        return false;
+        foreach(Word word in _words) {
+            if(!word.IsHidden()) {
+                return false; 
+            }
+        }
+
+        return true;
     }
     
 }
