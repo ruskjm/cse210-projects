@@ -47,7 +47,7 @@ class Program
     // Entry point for application
     static void Main(string[] args)
     {
-        // Create selector instance
+        // Create new Scripture object
         Scripture scripture = new Scripture();
 
         // Call GetRandomScripture method to retrieve random Scripture instance
