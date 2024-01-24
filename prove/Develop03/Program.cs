@@ -36,7 +36,6 @@ I did the below beyond the core requirements:
 1. Created random scriptures that are selected at the start of the program.
 
 2. Allowed the user to select how many words to remove on each round.
-
 */
 
 
@@ -48,47 +47,11 @@ class Program
     // Entry point for application
     static void Main(string[] args)
     {
-        // Declare Reference variable  
-        // Will hold scripture reference
-        Reference reference;
+        // Create selector instance
+        Scripture scripture = new Scripture();
 
-        // Declare Scripture variable
-        // Initialize to null initially
-        Scripture scripture = null;
-
-        // Random scriptures that the program will choose from
-        Random random = new Random();
-
-        // Create a random number from 1-4
-        int randomNumber = random.Next(1, 5);
-
-        // Picks one of the scripture from the random number returned
-        if (randomNumber == 1) {
-            reference = new Reference("1 Nephi", 3, 7);
-            scripture = new Scripture(reference, 
-            "And it came to pass that I, Nephi, said unto my father: I will go and do " +
-            "the things which the Lord hath commanded, for I know that the Lord giveth no " + 
-            "commandments unto the children of men, save he shall prepare a way for them that " +
-            "they may accomplish the thing which he commandeth them.");
-        } else if (randomNumber == 2) {
-            reference = new Reference("James", 1, 5, 6);
-            scripture = new Scripture(reference, 
-            "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, " + 
-            "and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. "+
-            "For he that wavereth is like a wave of the sea driven with the wind and tossed.");
-         } else if (randomNumber == 3) {
-            reference = new Reference("Moses", 1, 39);
-            scripture = new Scripture(reference, 
-            "For behold, this is my work and my glory, to bring to pass the immortality and eternal life of man.");
-        } else if (randomNumber == 4) {
-            reference = new Reference("Doctrine and Covenants", 58, 26, 27);
-            scripture = new Scripture(reference, 
-            "For behold, it is not meet that I should command in all things; " +
-            "for he that is compelled in all things, the same is a slothful " + 
-            "and not a wise servant; wherefore he receiveth no reward. " +
-            "Verily I say, men should be anxiously engaged in a good cause, " +
-            "and do many things of their own free will, and bring to pass much righteousness;");
-        }  
+        // Call GetRandomScripture method to retrieve random Scripture instance
+        Scripture randomScripture = scripture.GetRandomScripture();
 
         // Display welcome message
         Console.WriteLine("Welcome to the Scripture Memorizer program!");
@@ -101,7 +64,6 @@ class Program
 
         // Variable used for user prompt
         string input;
-
        
         // Blank line
         Console.WriteLine();
@@ -113,9 +75,8 @@ class Program
         Console.WriteLine();
 
         // Display original scripture
-        if (scripture != null) {
-            Console.WriteLine(scripture.GetDisplayWords());
-        }
+        Console.WriteLine(randomScripture.GetDisplayWords());
+
         // Blank line
         Console.WriteLine();
         
@@ -149,19 +110,18 @@ class Program
 
             // Calls HideRandomWords method from Scripture class
             // and hides the randomly determined number of words
-            scripture.HideRandomWords(remove);
+            randomScripture.HideRandomWords(remove);
 
             // Calls GetDisplayWords method from Scripture class
             // and displays the scripture with hidden words
-            Console.WriteLine(scripture.GetDisplayWords()); 
-
+            Console.WriteLine(randomScripture.GetDisplayWords()); 
 
             // Blank line  
             Console.WriteLine();  
 
             // Calls IsCompletelyHidden method from Scripture class
             // Checks if all words have been hidden
-            if (scripture.IsCompletelyHidden()) {
+            if (randomScripture.IsCompletelyHidden()) {
                 // Blank line  
                 Console.WriteLine();
                 // Message to display

@@ -6,6 +6,9 @@ public class Scripture {
 
     // List of Word objects making up text
     private List<Word> _words; 
+    
+    // Parameterless constructor
+    public Scripture() { }
 
     // Constructor to take the text string and add to words list  
     public Scripture(Reference reference, string text) {
@@ -83,5 +86,54 @@ public class Scripture {
         // If all words are hidden return true
         return true;
     }
+
+    // Method to return a random scripture
+    public Scripture GetRandomScripture()
+    {
+        // Declare Reference object  
+        Reference reference;
+
+        // Declare Scripture object
+         Scripture scripture = null;
+
+        // Random scriptures that the program will choose from
+        Random random = new Random();
+
+        // Create a random number from 1-4
+        int randomNumber = random.Next(1, 5);
+
+        // Picks one of the scripture from the random number returned
+        if (randomNumber == 1) {
+            reference = new Reference("1 Nephi", 3, 7);
+            scripture = new Scripture(reference, 
+            "And it came to pass that I, Nephi, said unto my father: I will go and do " +
+            "the things which the Lord hath commanded, for I know that the Lord giveth no " + 
+            "commandments unto the children of men, save he shall prepare a way for them that " +
+            "they may accomplish the thing which he commandeth them.");
+        } else if (randomNumber == 2) {
+            reference = new Reference("James", 1, 5, 6);
+            scripture = new Scripture(reference, 
+            "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, " + 
+            "and upbraideth not; and it shall be given him. But let him ask in faith, nothing wavering. "+
+            "For he that wavereth is like a wave of the sea driven with the wind and tossed.");
+         } else if (randomNumber == 3) {
+            reference = new Reference("Moses", 1, 39);
+            scripture = new Scripture(reference, 
+            "For behold, this is my work and my glory, to bring to pass the immortality and eternal life of man.");
+        } else if (randomNumber == 4) {
+            reference = new Reference("Doctrine and Covenants", 58, 26, 27);
+            scripture = new Scripture(reference, 
+            "For behold, it is not meet that I should command in all things; " +
+            "for he that is compelled in all things, the same is a slothful " + 
+            "and not a wise servant; wherefore he receiveth no reward. " +
+            "Verily I say, men should be anxiously engaged in a good cause, " +
+            "and do many things of their own free will, and bring to pass much righteousness;");
+        }   
+
+        // Return the scripture instance
+        return scripture;
+
+    }
+
     
 }
