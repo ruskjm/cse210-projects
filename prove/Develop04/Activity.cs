@@ -1,104 +1,120 @@
 
-using System.Threading.Tasks.Dataflow;
-
+// Activity class 
 class Activity
 {
+    // Protected string _name
     protected string _name;
+
+    // Protected string _description
     protected string _description;
+
+    // Protected int _duration
     protected int _duration;
 
-    public Activity() {}
-
+    // Displays the staring message method.
     public void DisplayStartingMessage() {
+
+        // Clears the console
         Console.Clear();
+
+        // Displays the welcome message with passed in _name string 
+        // set in the calling class
         Console.WriteLine($"Welcome to the {_name} Activity.");
+
+        // Blank line
         Console.WriteLine();
+        // Calls in the _description variable set in the calling class
         Console.WriteLine($"{_description}");
+
+        // Blank line
         Console.WriteLine();
-        Console.Write("How long in seconds, would you like your session? ");
+
+        // Display message for user to answer
+        Console.Write("How long, in seconds, would you like your session? ");
+
+        // Reads in user input
         string input = Console.ReadLine();
+
+        // Converts user input to in an stores in _duration variable
         _duration = int.Parse(input);
+
+        // Blank line
         Console.WriteLine();
+
+        // Get ready display message
         Console.WriteLine("Get ready...");
+
+        // Calls the ShowSpinner method with passed in seconds
         ShowSpinner(2);
     }
 
+    // Displays the ending message method.
     public void DisplayEndingMessage() {
-        Console.WriteLine();
+
+        // Display message
         Console.WriteLine("Well done!!");
+
+        // Calls the ShowSpinner method with passed in seconds
         ShowSpinner(2);
+
+        // Blank line
         Console.WriteLine();
-        Console.WriteLine($"You have completed another {_duration} seconds of the {_name} Activity.");
-        ShowSpinner(4);
+
+        // Displays the completed message with passed in _duration int and _name string
+        // set in the calling class
+        Console.WriteLine($"You have completed {_duration} seconds of the {_name} Activity.");
+
+        // Calls the ShowSpinner method with passed in seconds
+        ShowSpinner(8);
+
+        // Clears the console
         Console.Clear();
     }
 
+    // ShowSpinner method that shows the spinner for amoount of
+    // seconds passed in.
     public void ShowSpinner(int seconds) {
+
+        // Declare a variable to store the start time
         var startTime = DateTime.Now;
+
+        // Create an array of string characters to use as a spinner animation
         var spinner = new string[] {"-", "\\", "|", "/"};
+
+        // Index variable to keep track of the spinner
         var index = 0;
 
+        // Calculates the current seconds from startTime and continue to process
+        // until the specified number of seconds
         while ((DateTime.Now - startTime).TotalSeconds < seconds) {
-                Console.Write("\b" + spinner[index++ % spinner.Length]); 
+                // Print next spinner character
+                Console.Write("\b" + spinner[index++ % spinner.Length]);
+
+                // Sleep for 300 milliseconds
                 Thread.Sleep(300);
         }
-         
-
     }
 
-    public void ShowCountDown(string message, int seconds) 
-    {
-        Console.Write(message);
-        
+    // ShowCountDown method that shows the countdown for amount of
+    // seconds passed in and the message.
+    public void ShowCountDown(string message, int seconds) { 
+             
+        // Store the current position of the cursor
         int cursorLeft = Console.CursorLeft;
 
-        for (int i = seconds; i >= 0; i--)
-        {
+        // loop thru the seconds
+        for (int i = seconds; i > 0; i--) {
+            // Restore original cursor position
             Console.SetCursorPosition(cursorLeft, Console.CursorTop);
-            Console.Write(i);
-            
+
+            // Display the passed in message and countdown value
+            Console.Write(message + i);
+
+            // Sleep for 1000 milliseconds (1 second)
             Thread.Sleep(1000);
-
-            Console.SetCursorPosition(cursorLeft, Console.CursorTop);
-            Console.Write(new string('\b', i.ToString().Length)); 
-            //Console.Write(new string(' ', i.ToString().Length));
-            //Console.Write("\b\b"); // backspace space backspace
         }
+
+        // Blank out the last number onthe display
+        Console.Write("\b ");
     }
-
-// public void ShowCountDown(string message, int seconds)  
-// {
-//     Console.Write(message);
-    
-//     for (int i = seconds; i > 0; i--) 
-//     {
-//         Console.Write(" " + i);
-//         Thread.Sleep(1000);
-//         Console.SetCursorPosition(0, Console.CursorTop); 
-//     }
-// }
-
-// public void ShowCountDown(string message, int seconds)
-// {
-//     //Console.Write(message);
-
-//     for (int i = seconds; i > 0; i--)
-//     {
-//         Console.Write(message);
-//         Console.Write(i);  
-//         Thread.Sleep(1000);
-        
-//         int msgLength = message.Length + i.ToString().Length + 1;
-//         Console.SetCursorPosition(0, Console.CursorTop);
-        
-//          for (int j = 0; j < msgLength; j++)
-//          {
-//              Console.Write("\b"); 
-//          }
-//     }
-    
-// }
-
-
-
 }
