@@ -5,7 +5,10 @@ class ReflectionActivity: Activity
      private List<string> _prompts;
 
     // Private list of strings _questions
-     private List<string> _questions;
+     private List<string> _questions;  
+
+    // Random number generator
+     private Random random = new Random();   
 
     // ReflectionActivity constructor that sets the _name and _description protected
     // variables from the Activity class
@@ -32,6 +35,9 @@ class ReflectionActivity: Activity
         // Declare a variable to store the start time
         var startTime = DateTime.Now;
 
+        // Call the LoadQuestions method to load all the questions
+        LoadQuestions();
+
         // Calculates the current seconds from startTime and continue to process
         // until the specified number of seconds from the protected _duration
         // from Activity class
@@ -45,8 +51,7 @@ class ReflectionActivity: Activity
         Console.WriteLine();
 
         // Call the DisplayEndingMessage from the Activity class
-        DisplayEndingMessage(); 
-        
+        DisplayEndingMessage();        
     }
 
     // Private method to gets a random prompt
@@ -57,12 +62,13 @@ class ReflectionActivity: Activity
             "Think of a time when you stood up for someone else.",
             "Think of a time when you did something really difficult.",
             "Think of a time when you helped someone in need.",
-            "Think of a time when you did something truly selfless."
+            "Think of a time when you did something truly selfless.",
+            "Think of a time when you showed great resilience in the face of adversity.",
+            "Think of an experience where you overcame fear and stepped outside your comfort zone.",
+            "Think of a time when you creatively solved a problem.",
+            "Think of an experience where you failed at first but demonstrated grit and perseverance."
         };
-    
-        // Random number generator
-        var random = new Random();
-
+ 
         // Get random index
         var index = random.Next(_prompts.Count);
 
@@ -70,10 +76,9 @@ class ReflectionActivity: Activity
         return _prompts[index];       
     }
 
-    // Private method to gets a random question
-    private string GetRandomQuestion() {
-
-         // List of random questions
+    // Private method that loads the random questions
+    private void LoadQuestions() {
+        // List of random questions
         _questions = new List<string>() {
             "Why was this experience meaningful to you?",
             "Have you ever done anything like this before?",
@@ -83,18 +88,36 @@ class ReflectionActivity: Activity
             "What is your favorite thing about this experience?",
             "What could you learn from this experience that applies to other situations?",
             "What did you learn about yourself through this experience?",
-            "How can you keep this experience in mind in the future?"
-    };
-    
-        // Random number generator
-        var random = new Random();
+            "How can you keep this experience in mind in the future?",
+            "Did you achieve what you had hoped from this experience?",
+            "What was the most difficult part of this experience for you and how did you overcome it?",
+            "Did this experience help you gain any new skills?",
+            "Did you ever feel like giving up?",
+            "What motivated you to persist through to the end?",
+            "If you had unlimited resources, how might you have approached this experience differently?",
+            "Knowing what you know now, what advice would you give someone who was about to start a similar experience"
+        };
+    }
 
+    // Private method to gets a random question
+    private string GetRandomQuestion() {
+        
         // Get random index
         var index = random.Next(_questions.Count);
 
+        // Saves off returned question to a sttring
+        string question = _questions[index];
+
+        // Remove selected question from list   
+        _questions.RemoveAt(index);
+
+        // If all questions have been used reload them
+        if(_questions.Count == 0) {
+           LoadQuestions();
+        } 
+  
         // Returns random question
-        return _questions[index]; 
-        
+        return question;
     }
 
     // Priavte method to display prompt
@@ -134,7 +157,13 @@ class ReflectionActivity: Activity
 
         // Clear console
         Console.Clear();
-        }
+
+        // Display message with random prompt again so the user can refer back to it
+        Console.WriteLine("--- " + prompt + " ---");
+
+        // Blank line
+        Console.WriteLine();
+    }
 
     // Priavte method to display question
     private void DisplayQuestion() {
@@ -151,6 +180,5 @@ class ReflectionActivity: Activity
         // Blank line
         Console.WriteLine();
     }
-
 
 }

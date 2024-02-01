@@ -23,6 +23,7 @@ class Activity
 
         // Blank line
         Console.WriteLine();
+
         // Calls in the _description variable set in the calling class
         Console.WriteLine($"{_description}");
 
@@ -90,9 +91,12 @@ class Activity
                 // Print next spinner character
                 Console.Write("\b" + spinner[index++ % spinner.Length]);
 
-                // Sleep for 300 milliseconds
-                Thread.Sleep(300);
+                // Sleep for 150 milliseconds
+                Thread.Sleep(150);
         }
+
+        // Blank out the the spinner
+        Console.Write("\b ");
     }
 
     // ShowCountDown method that shows the countdown for amount of
@@ -114,7 +118,7 @@ class Activity
             Thread.Sleep(1000);
         }
 
-        // Blank out the last number onthe display
+        // Blank out the last number on the display
         Console.Write("\b ");
     }
 }

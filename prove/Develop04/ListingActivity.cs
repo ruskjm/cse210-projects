@@ -1,20 +1,22 @@
-class ListingActivity: Activity
+class ListingActivity : Activity
 {
     // Private int for list count
     private int _count;
 
     // Private list of string  _questions
-     private List<string> _questions;
+    private List<string> _questions;
 
     // ListingActivity constructor that sets the _name and _description protected
     // variables from the Activity class
-    public ListingActivity() {
+    public ListingActivity()
+    {
         _name = "Listing";
         _description = "This activity will help you reflect on the good things in your " +
         "life by having you list as many things as you can in a certain area.";
-     }
+    }
 
-    public void RunListingActivity() {
+    public void RunListingActivity()
+    {
 
         // Call the DisplayStartingMessage method from the Activity class
         DisplayStartingMessage();
@@ -45,7 +47,6 @@ class ListingActivity: Activity
         // until the specified number of seconds from the protected _duration
         // from Activity class
         while ((DateTime.Now - startTime).TotalSeconds < _duration) {
-
             // Call GetListFromUser method with passed in list
             GetListFromUser(list);
         }
@@ -55,9 +56,9 @@ class ListingActivity: Activity
 
         // Blank line
         Console.WriteLine();
-            
+
         // Call the DisplayEndingMessage from the Activity class
-        DisplayEndingMessage(); 
+        DisplayEndingMessage();
     }
 
     // Private method to gets a random question
@@ -77,7 +78,7 @@ class ListingActivity: Activity
 
         // Get random index
         var index = random.Next(_questions.Count);
-  
+
         // Get random question and set string
         string question = _questions[index];
 
@@ -91,14 +92,15 @@ class ListingActivity: Activity
         Console.WriteLine();
 
         // Display random question
-        Console.WriteLine(question);    
+        Console.WriteLine(question);
     }
 
 
     // Private method to for the user to enter a list
-    private void GetListFromUser(List<string> list) {
+    private void GetListFromUser(List<string> list)
+    {
 
-          // Display message
+        // Display message
         Console.Write(">");
 
         // Read in user input
@@ -108,7 +110,7 @@ class ListingActivity: Activity
         list.Add(input);
 
         // Set the count of the list 
-        _count = list.Count();       
+        _count = list.Count();
 
     }
 
