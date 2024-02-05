@@ -10,11 +10,11 @@ public class SimpleGoals : Goals {
     }
 
     public override void RecordEvent() {
-        IsComplete();
+        _isComplete = true;
     }
 
     public override bool IsComplete() {
-        return _isComplete = true;
+        return _isComplete;
     }
 
     public override string GetStringRepresentation() {

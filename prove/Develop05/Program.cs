@@ -113,14 +113,14 @@ class Program
                 using (StreamWriter writer = new StreamWriter(fullPath, false)) {
                     writer.WriteLine(totalPoints);
                     foreach(Goals goal in goals) {
-                        if (goal is SimpleGoals) {
-                            writer.WriteLine($"{goal}|{goal.Name}|{goal.Description}|{goal.Points}");
+                        if (goal is SimpleGoals sg) {
+                            writer.WriteLine($"{goal}|{goal.Name}|{goal.Description}|{goal.Points}|{sg.IsComplete()}");
                         }
                         else if (goal is EternalGoals) {
                             writer.WriteLine($"{goal}|{goal.Name}|{goal.Description}|{goal.Points}");
                         }
                         else if (goal is ChecklistGoals cg) {
-                        writer.WriteLine($"{goal}|{goal.Name}|{goal.Description}|{goal.Points}|{cg.ChecklistTarget}|{cg.ChecklistBonus}");
+                        writer.WriteLine($"{goal}|{goal.Name}|{goal.Description}|{goal.Points}|{cg.ChecklistTarget}|{cg.ChecklistBonus}|{cg.AmountCompleted}");
                         }  
                     }
                 }

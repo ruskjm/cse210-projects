@@ -1,6 +1,6 @@
 public class ChecklistGoals : Goals {
 
-    private int _amountCompleted = 0;
+    private int _amountCompleted;
 
     private int _target;
 
@@ -14,10 +14,15 @@ public class ChecklistGoals : Goals {
                 _target = target;
                 _bonus = bonus;
                 _isComplete = false;
+                _amountCompleted = 0;
     }
 
     public int ChecklistTarget {
         get { return _target; }
+    }
+
+    public int AmountCompleted {
+        get { return _amountCompleted; }
     }
 
     public int ChecklistBonus {  
@@ -54,7 +59,5 @@ public class ChecklistGoals : Goals {
         $"[X] {Name} ({Description}) -- Currently completed: {_amountCompleted}/{_target}":
         $"[ ] {Name} ({Description}) -- Currently completed: {_amountCompleted}/{_target}";
     }
-
-    //string details = GetDetailsString();
 
   }

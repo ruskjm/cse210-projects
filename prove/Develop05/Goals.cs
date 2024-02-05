@@ -31,9 +31,4 @@ public abstract class Goals {
 
     public abstract string GetStringRepresentation();
 
-    public static string GetDetailsString() {
-        return "";
-    }
-
-
 }
