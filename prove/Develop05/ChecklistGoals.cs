@@ -17,6 +17,15 @@ public class ChecklistGoals : Goals {
                 _amountCompleted = 0;
     }
 
+    public ChecklistGoals(string goalName, string description, string points, 
+        int target, int bonus, int amountCompleted): 
+            base (goalName, description, points) {
+                _target = target;
+                _bonus = bonus;
+                _amountCompleted = amountCompleted;
+                RecordEvent();
+                }
+
     public int ChecklistTarget {
         get { return _target; }
     }

@@ -160,7 +160,9 @@ class Program
                             string name = parts[1];
                             string description = parts[2];
                             string points = parts[3];
-                            goal = new SimpleGoals(name, description, points);
+                            string isCompleteString = parts[4];
+                            bool isComplete = bool.Parse(isCompleteString);
+                            goal = new SimpleGoals(name, description, points, isComplete);
                         } 
                         else if(classType == "EternalGoals") {
                             string name = parts[1];
@@ -174,7 +176,8 @@ class Program
                             string points = parts[3];
                             int targetNumber = int.Parse(parts[4]);
                             int bonusNumber = int.Parse(parts[5]);
-                            goal = new ChecklistGoals(name, description, points, targetNumber, bonusNumber);
+                            int completedNumber = int.Parse(parts[6]);
+                            goal = new ChecklistGoals(name, description, points, targetNumber, bonusNumber, completedNumber);
                         }
 
                        // Add to list
