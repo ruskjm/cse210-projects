@@ -427,8 +427,7 @@ public class GoalsManager {
         Console.WriteLine();
 
         // Display goal remove
-        Console.WriteLine1
-        ($"Goal {goalAsString} successfully remove.");
+        Console.WriteLine($"Goal {goalAsString} successfully remove.");
 
         // Blank line
         Console.WriteLine();
