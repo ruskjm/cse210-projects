@@ -32,23 +32,28 @@ In addition your program must:
     putting related items in the same class.
 
 Classes:
-Program
-
-GoalsManager
+Program: Entry point for application
+         
+GoalsManager: Used display menus, read in user input, display results and set up other
+              functionality of the program.  Used my Program (main) class.
 
 Base Class
-    Goals
+    Goals: Base class (abstract)
+           Protected string, description, points
+           Abstract classes RecordEvent, IsComplete, GetStringRepresentation
 
 Subclasses
-    EternalGoals
+    EternalGoals: (inherits from Goals class): Functionaly for eternal goals.
 
-    SimpleGoals
+    SimpleGoals:  (inherits from Goals class): Functionaly for simple goals.
 
-    ChecklistGoals
-
+    ChecklistGoals: (inherits from Goals class): Functionaly for checklist goals. 
 
 Stretch comments:
-
+1. Created GoalsManager class to handle the menu system and other related functions.
+   This simplifies the logic of the Program class and handles a lot of the complexity.
+   
+2. Added an option for the user to remove a goal from the list.
 
 */
 
