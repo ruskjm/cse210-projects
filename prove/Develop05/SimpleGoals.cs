@@ -6,8 +6,11 @@ public class SimpleGoals : Goals {
     private bool _isComplete;
 
     // Constructor to initialize SimpleGoals properties
+    // Uses goalName, description, points from the base class Goals
     public SimpleGoals(string goalName, string description, string points): 
         base (goalName, description, points) {
+
+          // set variables  
         _isComplete = false;
     }
 

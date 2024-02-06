@@ -46,7 +46,8 @@ public class GoalsManager {
         Console.WriteLine("\t3. Save Goals to File");
         Console.WriteLine("\t4. Load Goals from File");
         Console.WriteLine("\t5. Record Completed Goal");
-        Console.WriteLine("\t6. Quit the Program");
+        Console.WriteLine("\t6. Remove a Goal");
+        Console.WriteLine("\t7. Quit the Program");
         Console.Write("Select a choice from the menu: ");
     }
 
@@ -399,6 +400,42 @@ public class GoalsManager {
                 
         // Blank line
         Console.WriteLine();
+    }
+
+    // Method to remove goal 
+    public void RemoveGoal() {
+
+        // Call the ListGoals method to list the goals
+        ListGoals();
+
+        // User question
+        Console.Write("What goal number would you like to remove? ");
+
+        // Get the goal to remove inputed by user as int
+        int goalIndex = int.Parse(GetSelection());
+
+        // Save off goal object before delete
+        Goals goalToRemove = _goals[goalIndex - 1];
+
+        // Save off as goal object as a string
+        string goalAsString = $"{goalToRemove.Name} {goalToRemove.Description}";
+
+        // Remove selected goal
+        _goals.RemoveAt(goalIndex - 1);
+
+        // Blank line
+        Console.WriteLine();
+
+        // Display goal remove
+        Console.WriteLine1
+        ($"Goal {goalAsString} successfully remove.");
+
+        // Blank line
+        Console.WriteLine();
+
+
+
+
 
     }
 }

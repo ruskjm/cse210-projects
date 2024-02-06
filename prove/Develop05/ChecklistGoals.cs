@@ -16,9 +16,12 @@ public class ChecklistGoals : Goals {
     private bool _isComplete;
  
     // Constructor to initialize ChecklistGoals properties
+    // Uses goalName, description, points from the base class Goals
     public ChecklistGoals(string goalName, string description, string points, 
         int target, int bonus): 
             base (goalName, description, points) {
+
+                 // set variables
                 _target = target;
                 _bonus = bonus;
                 _isComplete = false;
@@ -29,9 +32,13 @@ public class ChecklistGoals : Goals {
     public ChecklistGoals(string goalName, string description, string points, 
         int target, int bonus, int amountCompleted): 
             base (goalName, description, points) {
+
+                // set variables
                 _target = target;
                 _bonus = bonus;
                 _amountCompleted = amountCompleted;
+
+                // Call RecordEvent method to see if goal can be marked completed
                 RecordEvent();
             }
 

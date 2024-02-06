@@ -70,7 +70,7 @@ class Program
         GoalsManager goalsManager = new GoalsManager();
 
         // While loop that will continue until user enters 4
-        while (input != "6")
+        while (input != "7")
         {
 
             // Call the DisplayTotalPoints method in the GoalsManager class
@@ -115,30 +115,42 @@ class Program
 
             // Option to load goals
             else if (input == "2") {
+                
                 // Call the ListGoals method in the GoalsManager class
                 goalsManager.ListGoals();
             }
 
             // Option to save the goals to a file
             else if (input == "3") {
+
                 // Call the SaveGoals method in the GoalsManager class
                 goalsManager.SaveGoals();
             }
 
             // Option to load the goals to a file
             else if (input == "4") {
+
                 // Call the LoadGoals method in the GoalsManager class
                 goalsManager.LoadGoals();
             }
 
             // Option to complete a goal
             else if (input == "5") {
-                // Call the RecordEvent method in the GoalsManager class
+
+                // Call the RecordGoal method in the GoalsManager class
                 goalsManager.RecordGoal();
             }
 
-            // Message to display if user enters to quit
+            // Option to remove a goal from the list
             else if (input == "6") {
+
+                // Call the RemoveGoal method in the GoalsManager class
+                goalsManager.RemoveGoal();
+            }
+
+            // Message to display if user enters to quit
+            else if (input == "7") {
+
                 // Blank Line
                 Console.WriteLine();
 

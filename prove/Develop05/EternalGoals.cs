@@ -3,6 +3,7 @@
 public class EternalGoals : Goals {
 
     // Constructor to initialize EternalGoal properties
+    // Uses goalName, description, points from the base class Goals
     public EternalGoals(string goalName, string description, string points): 
         base (goalName, description, points) {
     }
