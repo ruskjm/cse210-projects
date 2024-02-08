@@ -55,6 +55,13 @@ Stretch comments:
    
 2. Added an option for the user to remove a goal from the list.
 
+3. Added an option for the user to delete the goal file.
+
+4. Added an option for the user to reset a goal.
+    For SimpleGoals set it back to not completed.
+    For ChecklistGoals set the amount completed to a different number 
+    or increase the amount to complete to a different number.
+
 */
 
 
@@ -75,7 +82,7 @@ class Program
         GoalsManager goalsManager = new GoalsManager();
 
         // While loop that will continue until user enters 4
-        while (input != "7")
+        while (input != "9")
         {
 
             // Call the DisplayTotalPoints method in the GoalsManager class
@@ -153,8 +160,22 @@ class Program
                 goalsManager.RemoveGoal();
             }
 
-            // Message to display if user enters to quit
+            // Option to delete the goal file
             else if (input == "7") {
+
+                // Call the RemoveGoal method in the GoalsManager class
+                goalsManager.RemoveGoal();
+            }
+
+            // Option to reset a goal
+            else if (input == "8") {
+
+                // Call the RemoveGoal method in the GoalsManager class
+                goalsManager.RemoveGoal();
+            }
+
+            // Message to display if user enters to quit
+            else if (input == "9") {
 
                 // Blank Line
                 Console.WriteLine();

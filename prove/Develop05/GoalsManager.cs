@@ -47,7 +47,9 @@ public class GoalsManager {
         Console.WriteLine("\t4. Load Goals from File");
         Console.WriteLine("\t5. Record Completed Goal");
         Console.WriteLine("\t6. Remove a Goal");
-        Console.WriteLine("\t7. Quit the Program");
+        Console.WriteLine("\t7. Delete the Goal File");
+        Console.WriteLine("\t8. Reset a Goal");
+        Console.WriteLine("\t9. Quit the Program");
         Console.Write("Select a choice from the menu: ");
     }
 
