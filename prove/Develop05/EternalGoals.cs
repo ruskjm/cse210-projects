@@ -22,5 +22,4 @@ public class EternalGoals : Goals {
     public override string GetStringRepresentation() {
         return $"[ ] {Name} ({Description})";
     }
-
 }

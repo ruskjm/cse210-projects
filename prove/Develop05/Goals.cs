@@ -1,14 +1,14 @@
 // Abstract class of goals
 public abstract class Goals {
-
+    
     // Protected string for goal name
-    protected string _goalName;
+    private string _goalName;
 
     // Protected string for goal description
-    protected string _description;
+    private string _description;
 
     // Protected string for goal points
-    protected string _points;
+    private string _points;
   
     // Blank constructor
     public Goals(){}
@@ -43,5 +43,4 @@ public abstract class Goals {
 
     // Declare method to return string representation of goal details
     public abstract string GetStringRepresentation();
-
 }

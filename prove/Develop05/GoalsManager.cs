@@ -228,13 +228,13 @@ public class GoalsManager {
 
     // Method to load goals from a file
     public void LoadGoals() {
-
+        
         //Clear existing goals list before loading
         _goals.Clear();
 
         // Blank line
         Console.WriteLine();
-
+        
         // User question
         Console.Write("Enter file name to load goals from: ");
                 
@@ -431,10 +431,5 @@ public class GoalsManager {
 
         // Blank line
         Console.WriteLine();
-
-
-
-
-
     }
 }

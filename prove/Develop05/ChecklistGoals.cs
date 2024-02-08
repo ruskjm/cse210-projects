@@ -21,7 +21,7 @@ public class ChecklistGoals : Goals {
         int target, int bonus): 
             base (goalName, description, points) {
 
-                 // set variables
+                // set variables
                 _target = target;
                 _bonus = bonus;
                 _isComplete = false;
@@ -79,7 +79,7 @@ public class ChecklistGoals : Goals {
         if (_amountCompleted == _target) {
             IsComplete();
         }
-     }
+    }
 
     // Override method sets _isComplete to true 
     // and returns the value
@@ -93,5 +93,4 @@ public class ChecklistGoals : Goals {
         $"[X] {Name} ({Description}) -- Currently completed: {_amountCompleted}/{_target}":
         $"[ ] {Name} ({Description}) -- Currently completed: {_amountCompleted}/{_target}";
     }
-
-  }
+}

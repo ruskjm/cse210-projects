@@ -34,8 +34,6 @@ public class SimpleGoals : Goals {
     public override string GetStringRepresentation() {
         return _isComplete ? 
         $"[X] {Name} ({Description})":
-        $"[ ] {Name} ({Description})";
-                
+        $"[ ] {Name} ({Description})";              
     }
-
 }
