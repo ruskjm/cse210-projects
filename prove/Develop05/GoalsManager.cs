@@ -1,9 +1,10 @@
 // GoalsManager class to process the requests from the user
-public class GoalsManager {
+public class GoalsManager
+{
 
     // // Create new List of goals
     private List<Goals> _goals = new List<Goals>();
-     
+
     // Declare and initialze variable to track the total points
     private int _totalPoints = 0;
 
@@ -13,14 +14,15 @@ public class GoalsManager {
     // Declare and initialze variable for the bonus amount
     private int _bonus = 0;
 
-    
+
     //Set the default path where to save the file
     //Found an example on how to do this at
     //https://learn.microsoft.com/en-us/dotnet/api/system.environment.getfolderpath?view=net-8.0
     string defaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
     // Method to read in option entered by the user
-    public string GetSelection() {
+    public string GetSelection()
+    {
         // Read in user input
         string input = Console.ReadLine();
 
@@ -29,14 +31,16 @@ public class GoalsManager {
     }
 
     // Method to display total points
-    public void DisplayTotalPoints() {
+    public void DisplayTotalPoints()
+    {
 
         // Displays the total points
         Console.WriteLine($"You have {_totalPoints} total points.");
     }
 
     //Show menu options method
-    public void ShowMenu() {
+    public void ShowMenu()
+    {
 
         //Menu options
         Console.WriteLine();
@@ -54,7 +58,8 @@ public class GoalsManager {
     }
 
     //Show goal options to select method
-    public void DisplayGoalsOptions() {
+    public void DisplayGoalsOptions()
+    {
 
         // Goal options
         Console.WriteLine("The types of goals are:");
@@ -65,14 +70,15 @@ public class GoalsManager {
     }
 
     // Method to create a goal
-    public void CreateGoal(string goalType) {
+    public void CreateGoal(string goalType)
+    {
 
         // User question
         Console.Write("What is the name of the goal? ");
 
         // Call the GetSelection to read in the user input
         string name = GetSelection();
-        
+
         // User question
         Console.Write("What is a short description of the goal? ");
 
@@ -90,21 +96,22 @@ public class GoalsManager {
 
             // User question
             Console.Write("What is the bonus points for accomplishing the goal? ");
-                    
+
+            // Call the GetSelection to read in the user input
+            string bonusString = GetSelection();
+
+            // Convert to an int
+            _bonus = int.Parse(bonusString);
+
+            // User question
+            Console.Write("How many times does this goal need to be completed to get bonus points? ");
+
             // Call the GetSelection to read in the user input
             string targetInput = GetSelection();
 
             // Convert to an int
             _target = int.Parse(targetInput);
 
-            // User question
-            Console.Write("How many times does this goal need to be completed to get bonus points? ");
-                    
-            // Call the GetSelection to read in the user input
-            string bonusString = GetSelection();
-
-            // Convert to an int
-            _bonus = int.Parse(bonusString);
         }
 
         // Create goal object and set to null
@@ -125,14 +132,15 @@ public class GoalsManager {
         }
 
         // If user selects 3
-        else if (goalType == "3"){
+        else if (goalType == "3") {
 
             // Call the ChecklistGoals class and pass variables to constructor
             goal = new ChecklistGoals(name, description, points, _target, _bonus);
-        }            
+        }
 
         // If the goal object is not null    
-        if (goal != null) {
+        if (goal != null)
+        {
 
             // Add to goal list
             _goals.Add(goal);
@@ -155,7 +163,8 @@ public class GoalsManager {
         Console.WriteLine("Current Goals");
 
         // Iterate through the goals list
-        foreach(Goals goal in _goals) {
+        foreach (Goals goal in _goals)
+        {
 
             // Call the GetStringRepresentation method to get the message to display
             string display = goal.GetStringRepresentation();
@@ -170,7 +179,7 @@ public class GoalsManager {
         // Blank line
         Console.WriteLine();
     }
-    
+
     // Method to save the goals to a file
     public void SaveGoals() {
 
@@ -183,9 +192,6 @@ public class GoalsManager {
         // Set the file path to the default path and file name
         string fullPath = Path.Combine(defaultPath, fileName);
 
-        // Blank line
-        Console.WriteLine();
-
         //Open file stream for writing and overwrites the file
         using (StreamWriter writer = new StreamWriter(fullPath, false)) {
 
@@ -193,7 +199,7 @@ public class GoalsManager {
             writer.WriteLine(_totalPoints);
 
             // Iterate through the goals list
-            foreach(Goals goal in _goals) {
+            foreach (Goals goal in _goals) {
 
                 // If the class is SimpleGoals
                 if (goal is SimpleGoals sg) {
@@ -210,17 +216,18 @@ public class GoalsManager {
                 }
 
                 // If the class is ChecklistGoals
-                else if (goal is ChecklistGoals cg) {
+                else if (goal is ChecklistGoals cg)
+                {
 
                     // Write to file adds the class name and amount completed
                     writer.WriteLine($"{goal}|{goal.Name}|{goal.Description}|{goal.Points}|{cg.ChecklistTarget}|{cg.ChecklistBonus}|{cg.AmountCompleted}");
-                }  
+                }
             }
         }
 
         // Blank line
         Console.WriteLine();
-        
+
         // Display the where the file was saved
         Console.WriteLine("Goals saved to " + fullPath);
 
@@ -230,119 +237,123 @@ public class GoalsManager {
 
     // Method to load goals from a file
     public void LoadGoals() {
-        
+
         //Clear existing goals list before loading
         _goals.Clear();
 
         // Blank line
         Console.WriteLine();
-        
+
         // User question
         Console.Write("Enter file name to load goals from: ");
-                
+
         // Call the GetSelection to read in the user input
         string fileName = GetSelection();
 
         // Set the file path to the default path and file name
         string fullPath = Path.Combine(defaultPath, fileName);
 
-        //Open file stream for writing
-        using (StreamReader reader = new StreamReader(fullPath)) {
+        // Check if file exists
+        if (File.Exists(fullPath)) {
 
-            // Reads the first line to get the total points
-            string firstLine = reader.ReadLine();
+            //Open file stream for writing
+            using (StreamReader reader = new StreamReader(fullPath)) {
 
-            // If first line is not null
-            if (firstLine != null) {
+                // Reads the first line to get the total points
+                string firstLine = reader.ReadLine();
 
-            // Assigns the first line to points as an int
-            int points = int.Parse(firstLine);
+                // If first line is not null
+                if (firstLine != null) {
 
-            // Assigns points to _totalPoints
-            _totalPoints = points;
-            }
-            
-            string line;
-            while ((line = reader.ReadLine()) != null) {
+                    // Assigns the first line to points as an int
+                    int points = int.Parse(firstLine);
 
-                Goals goal = null;
-
-                // Split line on delimiter of |
-                string[] parts = line.Split('|');
-
-                // Grabs the class name from the first iteration
-                string classType = parts[0];
-
-                // classType is SimpleGoals
-                if(classType == "SimpleGoals") {
-
-                    // Saves off second iteration to name
-                    string name = parts[1];
-
-                    // Saves off third iteration to description
-                    string description = parts[2];
-
-                    // Saves off fourth iteration to points
-                    string points = parts[3];
-
-                    // Saves off fifth iteration to isCompleteString
-                    string isCompleteString = parts[4];
-
-                    // Converts to boolean
-                    bool isComplete = bool.Parse(isCompleteString);
-
-                    // Calls SimpleGoals method constructor with below values and returns to goal object
-                    goal = new SimpleGoals(name, description, points, isComplete);
-                } 
-
-                // classType is EternalGoals
-                else if(classType == "EternalGoals") {
-
-                    // Saves off second iteration to name
-                    string name = parts[1];
-
-                    // Saves off third iteration to description
-                    string description = parts[2];
-
-                    // Saves off fourth iteration to points
-                    string points = parts[3];
-
-                    // Calls EternalGoals method constructor with below values and returns to goal object
-                    goal = new EternalGoals(name, description, points);
+                    // Assigns points to _totalPoints
+                    _totalPoints = points;
                 }
 
-                // classType is ChecklistGoals
-                else if (classType == "ChecklistGoals") {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
 
-                    // Saves off second iteration to name
-                    string name = parts[1];
+                    Goals goal = null;
 
-                    // Saves off third iteration to description
-                    string description = parts[2];
+                    // Split line on delimiter of |
+                    string[] parts = line.Split('|');
 
-                    // Saves off fourth iteration to points
-                    string points = parts[3];
+                    // Grabs the class name from the first iteration
+                    string classType = parts[0];
 
-                    // Saves off fifth iteration to targetNumber as int
-                    int targetNumber = int.Parse(parts[4]);
+                    // classType is SimpleGoals
+                    if (classType == "SimpleGoals") {
 
-                    // Saves off sixth iteration to bonusNumber as int
-                    int bonusNumber = int.Parse(parts[5]);
+                        // Saves off second iteration to name
+                        string name = parts[1];
 
-                    // Saves off seventh iteration to completedNumber as int
-                    int completedNumber = int.Parse(parts[6]);
+                        // Saves off third iteration to description
+                        string description = parts[2];
 
-                    // Calls ChecklistGoals method constructor with below values and returns to goal object
-                    goal = new ChecklistGoals(name, description, points, targetNumber, bonusNumber, completedNumber);
+                        // Saves off fourth iteration to points
+                        string points = parts[3];
+
+                        // Saves off fifth iteration to isCompleteString
+                        string isCompleteString = parts[4];
+
+                        // Converts to boolean
+                        bool isComplete = bool.Parse(isCompleteString);
+
+                        // Calls SimpleGoals method constructor with below values and returns to goal object
+                        goal = new SimpleGoals(name, description, points, isComplete);
+                    }
+
+                    // classType is EternalGoals
+                    else if (classType == "EternalGoals") {
+
+                        // Saves off second iteration to name
+                        string name = parts[1];
+
+                        // Saves off third iteration to description
+                        string description = parts[2];
+
+                        // Saves off fourth iteration to points
+                        string points = parts[3];
+
+                        // Calls EternalGoals method constructor with below values and returns to goal object
+                        goal = new EternalGoals(name, description, points);
+                    }
+
+                    // classType is ChecklistGoals
+                    else if (classType == "ChecklistGoals") {
+
+                        // Saves off second iteration to name
+                        string name = parts[1];
+
+                        // Saves off third iteration to description
+                        string description = parts[2];
+
+                        // Saves off fourth iteration to points
+                        string points = parts[3];
+
+                        // Saves off fifth iteration to targetNumber as int
+                        int targetNumber = int.Parse(parts[4]);
+
+                        // Saves off sixth iteration to bonusNumber as int
+                        int bonusNumber = int.Parse(parts[5]);
+
+                        // Saves off seventh iteration to completedNumber as int
+                        int completedNumber = int.Parse(parts[6]);
+
+                        // Calls ChecklistGoals method constructor with below values and returns to goal object
+                        goal = new ChecklistGoals(name, description, points, targetNumber, bonusNumber, completedNumber);
+                    }
+
+                    // If the goal object is not null
+                    if (goal != null) {
+
+                        // Add to goal list
+                        _goals.Add(goal);
+                    }
                 }
-
-                // If the goal object is not null
-                if (goal != null) {
-
-                    // Add to goal list
-                    _goals.Add(goal);
-                }
-            }
                 // Blank line
                 Console.WriteLine();
 
@@ -351,6 +362,17 @@ public class GoalsManager {
 
                 // Blank line
                 Console.WriteLine();
+            }
+        }
+        else {
+            // Blank line
+            Console.WriteLine();
+
+            // Message that file does not exist
+            Console.WriteLine($"{fullPath} does not exsist.");
+
+            // Blank line
+            Console.WriteLine();
         }
     }
 
@@ -359,20 +381,21 @@ public class GoalsManager {
 
         // Call the ListGoals method to list the goals
         ListGoals();
-                
+
         // User question
         Console.Write("What goal number would you like to marked completed? ");
 
         // Call the GetSelection in the GoalsManager class to read in the user input
         int selectedIndex = int.Parse(GetSelection());
 
-        Goals selectedGoal = _goals[selectedIndex-1];
+        Goals selectedGoal = _goals[selectedIndex - 1];
 
         // Blank line
-        Console.WriteLine();            
+        Console.WriteLine();
 
         // If class is ChecklistGoals
-        if (selectedGoal is ChecklistGoals cg) {
+        if (selectedGoal is ChecklistGoals cg)
+        {
 
             // Calls IncrementCount method from ChecklistGoals to 
             // increment the counter for the goal completion number
@@ -384,12 +407,13 @@ public class GoalsManager {
             // Calls the GetBonus() from the class object
             _bonus = cg.GetBonus();
 
-        // If not ChecklistGoals class 
-        } else {
+            // If not ChecklistGoals class 
+        }
+        else {
 
             // Calls the RecordEvent() from the class object
-            selectedGoal.RecordEvent();  
-        }                        
+            selectedGoal.RecordEvent();
+        }
 
         // Totals total points selectedGoal points, _totalPoints and _bonus
         _totalPoints = int.Parse(selectedGoal.Points) + _totalPoints + _bonus;
@@ -398,8 +422,8 @@ public class GoalsManager {
         int currentPoints = int.Parse(selectedGoal.Points) + _bonus;
 
         // Display points earned
-        Console.WriteLine($"Congratulations! You have earned {currentPoints} points!" );
-                
+        Console.WriteLine($"Congratulations! You have earned {currentPoints} points!");
+
         // Blank line
         Console.WriteLine();
     }
@@ -416,7 +440,7 @@ public class GoalsManager {
         // Get the goal to remove inputed by user as int
         int goalIndex = int.Parse(GetSelection());
 
-        // Save off goal object before delete
+        // Save off goal object beforegoal delete
         Goals goalToRemove = _goals[goalIndex - 1];
 
         // Save off as goal object as a string
@@ -433,5 +457,166 @@ public class GoalsManager {
 
         // Blank line
         Console.WriteLine();
+    }
+
+    // Method to delete goal file
+    public void DeleteFile() {
+
+        // Blank Line
+        Console.WriteLine();
+
+        // User question
+        Console.Write("Enter file name to delete: ");
+
+        // Call the GetSelection to read in the user input
+        string fileName = GetSelection();
+
+        // Set the file path to the default path and file name
+        string fullPath = Path.Combine(defaultPath, fileName);
+
+        // Get the file info
+        FileInfo file = new FileInfo(fullPath);
+
+        // Checks if file exist
+        if (file.Exists) {
+
+            // Delete file
+            file.Delete();
+
+            // Blank Line
+            Console.WriteLine();
+
+            // Display message that the file was successfully deleted
+            Console.WriteLine($"{file} successfully deleted.");
+
+            // Blank Line
+            Console.WriteLine();
+        }
+
+        // If the file does not exist
+        else {
+
+            // Blank Line
+            Console.WriteLine();
+
+            // Display message that the file does not exist.
+            Console.WriteLine($"{file} does not exist.");
+
+            // Blank Line
+            Console.WriteLine();
+        }
+    }
+
+    // Method to reset a goal
+    public void ResetGoal() {
+
+        // Blank Line
+        Console.WriteLine();
+
+        // List goals
+        ListGoals();
+
+        // Display message that the file does not exist.
+        Console.Write("What goal would you like to reset? ");
+
+        // Get the goal to reset inputed by user as int
+        int goalIndex = int.Parse(GetSelection());
+
+        // Save off goal object before goal reset
+        Goals goalToReset = _goals[goalIndex - 1];
+
+        if (goalToReset is SimpleGoals) {
+
+            // Create new SimpleGoal, passing false for initial completion status
+            SimpleGoals resetGoal = new SimpleGoals(goalToReset.Name, goalToReset.Description, goalToReset.Points, false);
+
+            // Replace old goal in list with reset one  
+            _goals[goalIndex - 1] = resetGoal;
+
+            // Blank Line
+            Console.WriteLine();
+
+            // Display message
+            Console.WriteLine($"Reset simple goal: {goalToReset.Name}.");
+
+            // Blank Line
+            Console.WriteLine();
+        } 
+        
+        //
+        else if (goalToReset is ChecklistGoals cg) {
+            // Blank Line
+            Console.WriteLine();
+
+            // Display question and options
+            Console.WriteLine("What would you like to do?");
+            Console.WriteLine("\t1. Reset amount completed to 0.");
+            Console.WriteLine("\t2. Change target amount.");
+            Console.Write("Select a choice: ");
+
+            // Gets the selection from the user.
+            String choice = GetSelection();
+
+            // Create a string array of valid choices the user can enter
+            string[] validChoices = { "1", "2" };
+
+            // Validate the user enters a valid choice or prompts for another entry
+            while (!validChoices.Contains(choice)) {
+                // Display valid choices
+                Console.WriteLine("Invalid choice. Please enter 1, or 2.");
+
+                // Prompts to select again
+                Console.Write("Select a choice from the menu: ");
+
+                // Gets the selection from the user.
+                choice = GetSelection();
+
+            }
+
+            ChecklistGoals resetGoal = null;
+            if (choice == "1") {
+                // Create new ChecklistGoal, resetting relevant properties for amountCompleted
+                resetGoal = new ChecklistGoals(goalToReset.Name, goalToReset.Description, 
+                    goalToReset.Points, cg.ChecklistTarget, cg.ChecklistBonus, 0);
+            }
+            else {
+                Console.Write("What number would you like the target to be: ");
+
+                // Gets the selection from the user.
+                string targetInput = GetSelection();
+
+                // Convert to int
+                int target = int.Parse(targetInput);
+
+                // Create new ChecklistGoal, resetting relevant properties for target
+                resetGoal = new ChecklistGoals(goalToReset.Name, goalToReset.Description, 
+                    goalToReset.Points, target, cg.ChecklistBonus, cg.AmountCompleted);
+            }
+
+            // Replace old goal in list with reset one  
+            _goals[goalIndex - 1] = resetGoal;
+
+            // Blank Line
+            Console.WriteLine();
+
+            // Display message
+            Console.WriteLine($"Reset check list goal: {goalToReset.Name}.");
+
+            // Blank Line
+            Console.WriteLine();
+            }
+            
+        // Message for eternal goals that don't get reset.
+        else {
+
+            // Blank Line
+            Console.WriteLine();
+            
+            // Message for goals that don't get reset
+            Console.WriteLine("Nothing to reset for that goal.");
+
+            // Blank Line
+            Console.WriteLine();
+        }
     }
 }

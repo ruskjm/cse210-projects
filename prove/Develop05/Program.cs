@@ -57,11 +57,10 @@ Stretch comments:
 
 3. Added an option for the user to delete the goal file.
 
-4. Added an option for the user to reset a goal.
+4. Added an option for the user to reset a goal:
     For SimpleGoals set it back to not completed.
-    For ChecklistGoals set the amount completed to a different number 
+    For ChecklistGoals set the amount completed back to 0
     or increase the amount to complete to a different number.
-
 */
 
 
@@ -108,8 +107,7 @@ class Program
                 string[] validChoices = { "1", "2", "3" };
 
                 // Validate the user enters a valid choice or prompts for another entry
-                while (!validChoices.Contains(goalType))
-                {
+                while (!validChoices.Contains(goalType)) {
 
                     // Display valid choices
                     Console.WriteLine("Invalid choice. Please enter 1, 2, or 3.");
@@ -163,15 +161,15 @@ class Program
             // Option to delete the goal file
             else if (input == "7") {
 
-                // Call the RemoveGoal method in the GoalsManager class
-                goalsManager.RemoveGoal();
+                // Call the DeleteFile method in the GoalsManager class
+                goalsManager.DeleteFile();
             }
 
             // Option to reset a goal
             else if (input == "8") {
 
-                // Call the RemoveGoal method in the GoalsManager class
-                goalsManager.RemoveGoal();
+                // Call the ResetGoal method in the GoalsManager class
+                goalsManager.ResetGoal();
             }
 
             // Message to display if user enters to quit
