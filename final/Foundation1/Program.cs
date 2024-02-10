@@ -10,8 +10,8 @@ class Program {
             "Author:49ers", 
             "Length:1543",
             "patricklacson",
-            "Steve Young genuinely likes Brock and impressed by his humility and grounding in his faith and family. " +
-            "Great interview!",   
+            "Steve Young genuinely likes Brock and impressed by his humility and grounding in his faith and " +
+            "family. Great interview!",   
             "boonejune",
             "Steve Young is a treasure, thoughtful, highly engaged and doesn't interrupt his guests. " +
             "Brock has all the intangibles to bring home a championship!",
@@ -39,8 +39,8 @@ class Program {
             "Length:3692",
             "emo10001",
             "Wow this is fantastic.  I've started and not finished a LOT of C++ and C# tutorials.  I have no " +
-            "doubt that I will finish this and many of your other course offerings.  This is exactly what a beginner " +
-            "needs.  I can't wait to watch more.",
+            "doubt that I will finish this and many of your other course offerings.  This is exactly what a " +
+            "beginner needs.  I can't wait to watch more.",
             "gem8273",
             "It was the best lecture I’ve ever seen so far. Also, your accent is really clear for someone like me " +
             "who is not native English is smooth and understandable. I appreciate it thanks.",
@@ -70,7 +70,7 @@ class Program {
         Video video = null;
 
         // Look thru the list to populate video properties
-        for(int i=0; i<videoData.Count; i++) {
+        for(int i = 0; i < videoData.Count; i++) {
 
             // If the value in index equals Title
             if(videoData[i].StartsWith("Title")) {
