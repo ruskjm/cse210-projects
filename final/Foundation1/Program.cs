@@ -1,7 +1,7 @@
 /*
 Developer: Jason Rusk
 CSE 210: Programming with Classes
-Final
+Final Project
 Program 1: Abstraction with YouTube Videos
 */
 
