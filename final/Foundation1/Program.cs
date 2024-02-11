@@ -14,11 +14,11 @@ class Program {
         // List for the video title, author, length and each user and comment
         List<string> videoData = new List<string>() {
             "Title:Quarterback Conversations with Steve Young and Brock Purdy",
-            "Author:49ers", 
+            "Author:49ers",
             "Length:1543",
             "patricklacson",
             "Steve Young genuinely likes Brock and impressed by his humility and grounding in his faith and " +
-            "family. Great interview!",   
+            "family. Great interview!",
             "boonejune",
             "Steve Young is a treasure, thoughtful, highly engaged and doesn't interrupt his guests. " +
             "Brock has all the intangibles to bring home a championship!",
