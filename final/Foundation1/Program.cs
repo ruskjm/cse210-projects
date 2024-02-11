@@ -1,3 +1,10 @@
+/*
+Developer: Jason Rusk
+CSE 210: Programming with Classes
+Final
+Program 1: Abstraction with YouTube Videos
+*/
+
 //The Program class serves as the entry point for the application.
 class Program {
 
@@ -75,7 +82,7 @@ class Program {
             // If the value in index equals Title
             if(videoData[i].StartsWith("Title")) {
 
-                // Display previous video
+                // Display first video
                 if (video != null) {
 
                     // Call the DisplayVideoInfo method in Video class
