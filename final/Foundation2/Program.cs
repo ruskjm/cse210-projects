@@ -1,7 +1,7 @@
 /*
 Developer: Jason Rusk
 CSE 210: Programming with Classes
-Final
+Final Project
 Program 2: Encapsulation with Online Ordering
 */
 
