@@ -7,6 +7,7 @@ public class Order {
     // Customer object from Customer class
     private Customer _customer; 
 
+    // Shipping cost double
     private double _shippingCost;
 
     // Order constructor
