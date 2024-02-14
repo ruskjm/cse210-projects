@@ -1,3 +1,4 @@
+// Address class 
 public class Address {
 
     // Street address string
@@ -22,6 +23,7 @@ public class Address {
             _zipCode = zipCode;
     }
 
+    // Method to display the address
     public void DisplayAddress() {
         Console.WriteLine($"{_street}");
         Console.WriteLine($"{_city}, {_state} {_zipCode}");
