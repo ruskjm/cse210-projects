@@ -4,7 +4,7 @@ public class Customer {
     // Customer name string
     private string _customerName;
 
-    // Customer address strin
+    // The address from class instance 
     private Address _customerAddress;
 
     // Customer constructor
