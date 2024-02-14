@@ -13,7 +13,7 @@ public class Event {
     // Event time string
     private string _eventTime;
 
-    // The customer address from class instance 
+    // The address from class instance 
     private Address _eventAddress;
 
     // Event constructor
