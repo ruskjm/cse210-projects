@@ -5,10 +5,10 @@ Final Project
 Program 3: Inheritance with Event Planning
 */
 
-
+// Main application class
 class Program {
 
-
+    // Entry point for application
     static void Main(string[] args) {
 
         // Clear the console
